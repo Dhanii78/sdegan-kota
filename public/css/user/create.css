@@ -1,0 +1,336 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FCF6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    margin-left: 200px;
+}
+
+.btn-back {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #dc3545; /* Warna merah */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #c82333; /* Merah lebih gelap saat hover */
+}
+
+.header-text {
+    background-color: #F0FCF6;
+    text-align: center;
+    color: #111312;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    font-family: 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.header-text::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #89c4af; /* aksen hijau */
+    margin: 6px auto 0;
+    border-radius: 2px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-start; /* Gambar lebih ke kiri */
+    align-items: center;
+    padding: 20px;
+    gap: 50px; /* Jarak antara gambar dan form */
+}
+
+.form-image {
+    width: 400px; /* Gambar lebih besar */
+    height: auto;
+    border-radius: 8px;
+    margin-left: -100px; /* Geser gambar lebih ke kiri */
+}
+
+.content {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.add-user-form {
+    width: 98%;
+}
+
+.edit-user-form {
+    width: 98%;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Tombol lebih kecil */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    display: block;
+    margin: 20px auto; /* Agar tombol di tengah */
+    margin-bottom: 10px;
+    width: auto;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Style untuk input password */
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Style untuk container checkbox dan label */
+.checkbox-container {
+    display: flex;
+    align-items: center;  /* Agar sejajar secara vertikal */
+    gap: 5px;  /* Jarak antara checkbox dan teks */
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Style untuk checkbox */
+#showPassword {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Tambahkan animasi untuk fade in dan slide in */
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(0); }
+}
+
+/* Animasi fade-out dan slide-out */
+@keyframes modalFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes modalSlideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100px); }
+}
+
+/* Saat modal sedang dalam proses penutupan, gunakan animasi ini */
+.modal.hide .modal-content {
+    animation: modalFadeOut 0.3s ease, modalSlideOut 0.3s ease;
+    opacity: 0;
+    transform: translateY(-100px);
+}
+
+/* Animasi saat modal ditampilkan */
+.modal.show .modal-content {
+    animation: modalFadeIn 0.3s ease, modalSlideIn 0.3s ease;
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    transform: translateY(-100px);
+    opacity: 0;
+}
+
+/* Saat modal ditampilkan, ubah opacity dan posisi */
+.modal.show .modal-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Logout button */
+.btn-logout {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #d9534f;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-logout:hover {
+    background-color: #c9302c;
+}
+
+/* Profile details */
+.profile-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Ubah align-items dari center ke flex-start */
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-logo {
+    flex-shrink: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-self: flex-start; /* Tambahkan align-self untuk memposisikan gambar lebih ke atas */
+}
+
+.profile-logo img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        margin-left: 0;
+        padding: 0;
+    }
+    .btn-back {
+        position: static;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: fit-content;
+    }
+    .header-text {
+        position: static;
+        transform: none;
+        margin: 15px auto;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .main-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 0;
+    }
+    .form-image {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        display: block;
+    }
+    .content {
+        max-width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+    }
+    button {
+        width: 100%;
+        min-height: 44px;
+        font-size: 16px;
+    }
+}

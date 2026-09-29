@@ -1,0 +1,1511 @@
+/* Mobile role portals - visual system derived from Untitled.pdf. */
+:root {
+    --role-bg: #f1f9ff;
+    --role-surface: #ffffff;
+    --role-surface-blue: #e0f3ff;
+    --role-line: #becbb9;
+    --role-ink: #08202b;
+    --role-muted: #424d42;
+    --role-green: #086b19;
+    --role-blue: #056bad;
+    --role-blue-soft: #cce9f8;
+    --role-danger: #c6181d;
+    --role-shadow: 0 6px 14px rgba(7, 50, 74, 0.14);
+}
+
+.role-mobile-chrome,
+.mobile-history-view,
+.mobile-validation-view {
+    display: none;
+}
+
+.role-portal .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (max-width: 767px) {
+    html {
+        background: var(--role-bg);
+    }
+
+    body.role-portal {
+        min-height: 100dvh;
+        margin: 0;
+        padding: 0 0 92px;
+        overflow-x: hidden;
+        background: var(--role-bg);
+        color: var(--role-ink);
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .role-mobile-chrome {
+        display: block;
+    }
+
+    .role-app-header {
+        position: sticky;
+        top: 0;
+        z-index: 120;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 56px;
+        padding: 7px 22px;
+        border-bottom: 1px solid var(--role-line);
+        background: rgba(241, 249, 255, 0.98);
+        backdrop-filter: blur(12px);
+    }
+
+    .role-app-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--role-ink);
+        font-size: 1.55rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+    }
+
+    .role-app-brand img {
+        width: 38px;
+        height: 38px;
+        object-fit: contain;
+    }
+
+    .role-profile-trigger {
+        display: inline-grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--role-ink);
+        font-size: 1.8rem;
+    }
+
+    .role-profile-trigger:focus-visible,
+    .role-bottom-nav a:focus-visible,
+    .role-profile-sheet a:focus-visible,
+    .role-profile-sheet button:focus-visible {
+        outline: 3px solid rgba(5, 107, 173, 0.4);
+        outline-offset: 2px;
+    }
+
+    .role-profile-sheet {
+        position: fixed;
+        top: 65px;
+        right: 16px;
+        z-index: 130;
+        display: grid;
+        width: min(292px, calc(100vw - 32px));
+        gap: 4px;
+        padding: 14px;
+        border: 1px solid var(--role-line);
+        border-radius: 14px;
+        background: var(--role-surface);
+        box-shadow: var(--role-shadow);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .role-profile-sheet.is-open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .role-profile-sheet__identity {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 6px 12px;
+        border-bottom: 1px solid #dce5dc;
+    }
+
+    .role-profile-sheet__identity > i {
+        color: var(--role-blue);
+        font-size: 2rem;
+    }
+
+    .role-profile-sheet__identity strong,
+    .role-profile-sheet__identity span {
+        display: block;
+    }
+
+    .role-profile-sheet__identity span {
+        margin-top: 2px;
+        color: var(--role-muted);
+        font-size: 0.81rem;
+    }
+
+    .role-profile-sheet a,
+    .role-profile-sheet button {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        min-height: 42px;
+        padding: 8px;
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--role-ink);
+        font: inherit;
+        font-size: 0.91rem;
+        text-align: left;
+        text-decoration: none;
+    }
+
+    .role-profile-sheet a:active,
+    .role-profile-sheet button:active {
+        background: var(--role-surface-blue);
+        transform: scale(0.98);
+    }
+
+    .role-profile-sheet form {
+        margin: 0;
+    }
+
+    .role-bottom-nav {
+        position: fixed;
+        right: 14px;
+        bottom: 12px;
+        left: 14px;
+        z-index: 120;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 72px;
+        padding: 5px 14px;
+        border-top: 1px solid var(--role-line);
+        background: rgba(250, 253, 255, 0.98);
+        box-shadow: 0 4px 18px rgba(7, 50, 74, 0.11);
+    }
+
+    .role-bottom-nav a {
+        display: grid;
+        place-items: center;
+        align-content: center;
+        gap: 3px;
+        color: var(--role-muted);
+        font-size: 0.91rem;
+        font-weight: 600;
+        line-height: 1.1;
+        text-decoration: none;
+        transition: color 160ms ease, transform 160ms ease;
+    }
+
+    .role-bottom-nav a i {
+        font-size: 1.3rem;
+    }
+
+    .role-bottom-nav a.is-active {
+        color: var(--role-blue);
+        font-weight: 700;
+    }
+
+    .role-bottom-nav a:active {
+        transform: scale(0.96);
+    }
+
+    /* Allow navbar to be handled by app.css off-canvas rules */
+    /* .role-portal .navbar {
+        display: none !important;
+    } */
+
+    .role-portal .container {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+
+    .role-portal .main-content {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 22px !important;
+        background: transparent !important;
+    }
+
+    /* Operator: input harga */
+    .operator-entry-page {
+        padding: 50px 0 0;
+    }
+
+    .operator-entry-page .portal-intro {
+        padding: 0 22px 28px;
+        text-align: center;
+    }
+
+    .operator-entry-page .portal-intro h1 {
+        max-width: 360px;
+        margin: 0 auto 9px;
+        color: var(--role-green);
+        font-size: 1.42rem;
+        font-weight: 800;
+        line-height: 1.2;
+        text-wrap: balance;
+    }
+
+    .operator-entry-page .portal-intro > p {
+        margin: 0;
+        color: var(--role-muted);
+        font-size: 0.98rem;
+        line-height: 1.42;
+    }
+
+    .portal-user-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 100%;
+        margin-top: 12px;
+        padding: 6px 15px;
+        border-radius: 99px;
+        background: var(--role-blue-soft);
+        color: var(--role-green);
+        font-size: 0.88rem;
+        font-weight: 700;
+    }
+
+    .operator-entry-page .operator-form-heading {
+        margin: 0 0 20px;
+        color: var(--role-green);
+        font-size: 1.42rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .operator-entry-page .date-field {
+        display: grid;
+        gap: 7px;
+        margin: 0 22px 24px;
+    }
+
+    .operator-entry-page .date-field label {
+        color: var(--role-muted);
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    .operator-entry-page .date-field input {
+        width: 100%;
+        min-height: 50px;
+        padding: 0 12px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: var(--role-surface);
+        color: var(--role-ink);
+        font-size: 1.15rem;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .operator-entry-page .table-responsive {
+        width: auto;
+        margin: 0 22px;
+        overflow: visible;
+        border: 0;
+        border-radius: 0;
+    }
+
+    .operator-entry-page .scrollable-table {
+        overflow: visible;
+        max-height: none !important;
+    }
+
+    .operator-entry-page .table {
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        border-collapse: collapse;
+        table-layout: fixed;
+        background: var(--role-surface);
+    }
+
+    .operator-entry-page .table th,
+    .operator-entry-page .table td {
+        border: 0;
+        border-bottom: 1px solid var(--role-line);
+        vertical-align: middle;
+    }
+
+    .operator-entry-page .table th {
+        padding: 0 3px 9px;
+        background: transparent;
+        color: var(--role-muted);
+        font-size: 0.73rem;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    .operator-entry-page .table th:first-child {
+        width: 40%;
+        text-align: left;
+    }
+
+    .operator-entry-page .table th:nth-child(2) { width: 16%; }
+    .operator-entry-page .table th:nth-child(3) { width: 20%; }
+    .operator-entry-page .table th:nth-child(4) {
+        width: 24%;
+        color: var(--role-green);
+    }
+
+    .operator-entry-page .table td {
+        padding: 11px 3px;
+        color: var(--role-ink);
+        font-size: 0.79rem;
+        font-weight: 600;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .operator-entry-page .table tbody tr:nth-child(even) {
+        background: var(--role-surface-blue);
+    }
+
+    .operator-entry-page .table td:first-child {
+        color: var(--role-ink);
+        font-size: 0.94rem;
+        font-weight: 500;
+        line-height: 1.2;
+        text-align: left;
+    }
+
+    .operator-entry-page .commodity-unit {
+        display: block;
+        margin-top: 3px;
+        color: #697164;
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+
+    .operator-entry-page .price-input {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        height: 34px;
+        border: 1px solid var(--role-line);
+        border-radius: 3px;
+        background: var(--role-bg);
+        color: #68717e;
+    }
+
+    .operator-entry-page .price-input span {
+        padding-left: 5px;
+        font-size: 0.7rem;
+        font-weight: 500;
+    }
+
+    .operator-entry-page .price-input input {
+        width: 100%;
+        min-width: 0;
+        height: 32px;
+        padding: 0 5px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: var(--role-ink);
+        font: inherit;
+        text-align: right;
+    }
+
+    .operator-entry-page .price-input input:focus {
+        box-shadow: inset 0 0 0 2px rgba(5, 107, 173, 0.3);
+    }
+
+    .operator-entry-page .submit-area {
+        position: static; /* Biarkan berada di bawah form secara alami */
+        margin: 20px -22px 0;
+        padding: 15px 22px;
+        background: transparent;
+    }
+
+    .operator-entry-page .submit-area button {
+        width: 100%;
+        min-height: 52px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--role-blue);
+        box-shadow: 0 5px 9px rgba(0, 72, 119, 0.22);
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+
+    /* Operator: riwayat kiriman */
+    .role-portal .desktop-operator-data > .container > *:not(.navbar) {
+        display: none !important;
+    }
+
+    .mobile-history-view {
+        display: block;
+        padding: 48px 22px 6px;
+    }
+
+    .mobile-history-view h1,
+    .mobile-validation-view h1 {
+        margin: 0;
+        color: var(--role-ink);
+        font-size: 1.65rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+    }
+
+    .mobile-history-view > p,
+    .mobile-validation-view > p {
+        margin: 10px 0 24px;
+        color: var(--role-muted);
+        font-size: 0.96rem;
+        line-height: 1.42;
+    }
+
+    .operator-success-banner {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 0 0 18px;
+        padding: 12px;
+        border: 1px solid #a7c7ab;
+        border-radius: 7px;
+        background: #edf8ef;
+        color: var(--role-green);
+    }
+
+    .operator-success-banner i {
+        margin-top: 2px;
+        font-size: 1.25rem;
+    }
+
+    .operator-success-banner strong,
+    .operator-success-banner span {
+        display: block;
+    }
+
+    .operator-success-banner span {
+        margin-top: 2px;
+        color: var(--role-muted);
+        font-size: 0.78rem;
+    }
+
+    .history-filter-form {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 18px;
+    }
+
+    .history-filter-field {
+        position: relative;
+    }
+
+    .history-filter-field i {
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        color: var(--role-muted);
+        font-size: 1.15rem;
+        pointer-events: none;
+        transform: translateY(-50%);
+    }
+
+    .history-filter-field input {
+        width: 100%;
+        min-height: 48px;
+        padding: 0 14px 0 48px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: var(--role-surface);
+        color: var(--role-ink);
+        font-size: 0.96rem;
+    }
+
+    .history-filter-field input::placeholder {
+        color: #788174;
+    }
+
+    .history-status-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr 1.35fr 1fr;
+        gap: 7px;
+    }
+
+    .history-status-tabs button {
+        min-height: 38px;
+        padding: 5px 3px;
+        border: 1px solid var(--role-line);
+        border-radius: 20px;
+        background: var(--role-surface);
+        color: var(--role-muted);
+        font: inherit;
+        font-size: 0.68rem;
+        font-weight: 700;
+    }
+
+    .history-status-tabs button.is-active {
+        border-color: #349df2;
+        background: #349df2;
+        color: #0c416a;
+    }
+
+    .history-list {
+        display: grid;
+        gap: 12px;
+    }
+
+    .history-card {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4px 10px;
+        padding: 16px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: var(--role-surface);
+        box-shadow: 0 1px 0 rgba(8, 32, 43, 0.02);
+    }
+
+    .history-card__date {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--role-muted);
+        font-size: 0.87rem;
+        font-weight: 600;
+    }
+
+    .history-card__date i { color: var(--role-green); }
+
+    .history-status {
+        align-self: center;
+        padding: 5px 9px;
+        border-radius: 99px;
+        color: #fff;
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+    }
+
+    .history-status--valid { background: #248231; }
+    .history-status--pending { background: #2e9bf3; color: #064c81; }
+    .history-status--rejected { background: #fde8e8; color: #b32124; }
+
+    .history-card__title {
+        grid-column: 1 / -1;
+        margin: 2px 0 0;
+        color: var(--role-ink);
+        font-size: 1.22rem;
+        font-weight: 800;
+    }
+
+    .history-card__meta {
+        grid-column: 1 / 2;
+        margin: 0;
+        color: var(--role-muted);
+        font-size: 0.84rem;
+    }
+
+    .history-card__arrow {
+        grid-column: 2;
+        grid-row: 3;
+        align-self: end;
+        color: var(--role-muted);
+        font-size: 1rem;
+    }
+
+    .history-empty {
+        padding: 28px 18px;
+        border: 1px dashed var(--role-line);
+        border-radius: 8px;
+        color: var(--role-muted);
+        text-align: center;
+    }
+
+    /* Accordion wrapper and details */
+    .history-card-wrapper {
+        margin-bottom: 12px;
+        border: 1px solid var(--role-line);
+        border-radius: 8px;
+        background: var(--role-surface);
+        overflow: hidden;
+    }
+    
+    /* Override history-card border since wrapper has it */
+    .history-list .history-card {
+        border: none;
+        box-shadow: none;
+        cursor: pointer;
+        padding: 16px;
+        background: transparent;
+        transition: background-color 0.2s;
+    }
+    
+    .history-list .history-card:active {
+        background-color: var(--role-surface-blue);
+    }
+    
+    .history-card.is-expanded .history-card__arrow {
+        transform: rotate(90deg);
+    }
+    
+    .history-card__arrow {
+        transition: transform 0.2s ease;
+    }
+    
+    .details-divider {
+        height: 1px;
+        background-color: var(--role-line);
+        margin: 0 16px;
+    }
+    
+    .details-list {
+        padding: 8px 16px 16px;
+    }
+    
+    .details-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+    
+    .details-item:last-child {
+        border-bottom: none;
+    }
+    
+    .details-item__info {
+        flex: 1;
+        padding-right: 12px;
+    }
+    
+    .details-item__name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--role-ink);
+        margin-bottom: 4px;
+        text-align: left;
+    }
+    
+    .details-item__prices {
+        font-size: 0.8rem;
+        color: var(--role-muted);
+        text-align: left;
+    }
+    
+    .price-lbl {
+        color: #718096;
+    }
+    
+    .price-val {
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+    }
+    
+    .price-val--today {
+        color: var(--role-blue);
+        font-weight: 700;
+    }
+    
+    .details-item__reason {
+        font-size: 0.75rem;
+        margin-top: 4px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-weight: 600;
+    }
+    
+    .details-item__action {
+        flex-shrink: 0;
+    }
+    
+    .btn-edit-mob {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background-color: var(--role-danger);
+        color: #fff !important;
+        font-size: 0.78rem;
+        font-weight: 700;
+        border-radius: 4px;
+        text-decoration: none !important;
+        box-shadow: 0 2px 4px rgba(198, 24, 29, 0.2);
+        transition: transform 0.1s;
+    }
+    
+    .btn-edit-mob:active {
+        transform: scale(0.95);
+    }
+    
+    .badge-locked {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px 10px;
+        background-color: #edf2f7;
+        color: #718096;
+        font-size: 0.72rem;
+        font-weight: 600;
+        border-radius: 4px;
+        border: 1px solid #e2e8f0;
+    }
+
+    /* Verifikator: kartu validasi */
+    .role-portal .desktop-validation-view > .container > *:not(.navbar) {
+        display: none !important;
+    }
+
+    .mobile-validation-view {
+        display: block;
+        padding: 16px 20px 5px;
+    }
+
+    .mobile-validation-view h1 {
+        font-size: 1.85rem;
+    }
+
+    .validation-bulk-actions {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin: 0 0 16px;
+    }
+
+    .validation-bulk-actions button {
+        min-height: 64px;
+        padding: 8px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        font: inherit;
+        font-size: 0.86rem;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+
+    .validation-bulk-actions button i {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.05rem;
+    }
+
+    .validation-bulk-actions .validate-all {
+        background: var(--role-green);
+        color: #fff;
+    }
+
+    .validation-bulk-actions .reject-all {
+        border-color: #ffc9c9;
+        background: var(--role-blue-soft);
+        color: var(--role-danger);
+    }
+
+    .validation-card-list {
+        display: grid;
+        gap: 0;
+        overflow: hidden;
+        border: 1px solid var(--role-line);
+        border-radius: 8px;
+        background: var(--role-surface);
+    }
+
+    .validation-card {
+        padding: 15px;
+        border-bottom: 1px solid var(--role-line);
+    }
+
+    .validation-card:last-child { border-bottom: 0; }
+
+    .validation-card h2 {
+        margin: 0;
+        color: var(--role-ink);
+        font-size: 1.1rem;
+        font-weight: 800;
+    }
+
+    .validation-card > p {
+        margin: 3px 0 13px;
+        color: var(--role-muted);
+        font-size: 0.86rem;
+    }
+
+    .validation-prices {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .validation-prices span {
+        display: block;
+        color: var(--role-muted);
+        font-size: 0.67rem;
+        text-align: center;
+    }
+
+    .validation-prices strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--role-ink);
+        font-size: 0.94rem;
+        font-variant-numeric: tabular-nums;
+        text-align: center;
+    }
+
+    .validation-prices div:last-child strong { font-weight: 800; }
+
+    .validation-choice-group {
+        display: flex;
+        justify-content: flex-end;
+        margin: -2px 0 9px;
+    }
+
+    .validation-choice-group button {
+        min-width: 74px;
+        min-height: 32px;
+        padding: 4px 10px;
+        border: 0;
+        background: var(--role-blue-soft);
+        color: var(--role-muted);
+        font: inherit;
+        font-size: 0.83rem;
+    }
+
+    .validation-choice-group button:first-child {
+        border: 1px solid var(--role-line);
+        border-radius: 3px 0 0 3px;
+        background: #fff;
+        color: var(--role-green);
+        font-weight: 700;
+    }
+
+    .validation-choice-group button:last-child { border-radius: 0 3px 3px 0; }
+    
+    /* State Terpilih */
+    .validation-choice-group button[data-status-choice="Valid"].is-selected {
+        background: var(--role-green);
+        color: #fff;
+        border-color: var(--role-green);
+    }
+    .validation-choice-group button[data-status-choice="Tidak_valid"].is-selected {
+        background: var(--role-danger);
+        color: #fff;
+        border-color: var(--role-danger);
+    }
+
+    .validation-note {
+        width: 100%;
+        min-height: 38px;
+        padding: 7px 10px;
+        border: 1px solid var(--role-line);
+        border-radius: 3px;
+        background: var(--role-surface-blue);
+        color: var(--role-ink);
+        font: inherit;
+        font-size: 0.88rem;
+    }
+
+    .validation-note::placeholder { color: #748092; }
+
+    .validation-submit-area {
+        position: sticky;
+        bottom: 83px;
+        z-index: 20;
+        margin: 0 -20px;
+        padding: 12px 24px 10px;
+        background: rgba(241, 249, 255, 0.96);
+        backdrop-filter: blur(8px);
+    }
+
+    .validation-submit-area button {
+        width: 100%;
+        min-height: 52px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--role-blue);
+        box-shadow: 0 5px 9px rgba(0, 72, 119, 0.22);
+        color: #fff;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+    }
+
+    .validation-empty {
+        padding: 32px 18px;
+        border: 1px dashed var(--role-line);
+        border-radius: 8px;
+        color: var(--role-muted);
+        text-align: center;
+    }
+
+    .validation-success-view {
+        display: grid;
+        min-height: calc(100dvh - 148px);
+        align-content: center;
+        justify-items: center;
+        padding: 30px 26px;
+        text-align: center;
+    }
+
+    .validation-success-view i {
+        display: grid;
+        width: 68px;
+        height: 68px;
+        place-items: center;
+        border: 1px solid #b6d4c1;
+        border-radius: 7px;
+        background: #dff2f7;
+        color: var(--role-green);
+        font-size: 2rem;
+    }
+
+    .validation-success-view h1 {
+        margin: 22px 0 8px;
+        font-size: 1.55rem;
+    }
+
+    .validation-success-view > p { margin: 0 0 20px; }
+
+    .validation-summary {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: #fff;
+        text-align: left;
+    }
+
+    .validation-summary h2 {
+        margin: 0 0 8px;
+        color: var(--role-muted);
+        font-size: 0.7rem;
+        font-weight: 700;
+    }
+
+    .validation-summary div {
+        display: flex;
+        justify-content: space-between;
+        padding: 9px 0;
+        border-top: 1px solid #e4ece8;
+        font-size: 0.88rem;
+    }
+
+    .validation-summary strong { color: var(--role-green); }
+    .validation-summary .is-rejected { color: var(--role-danger); }
+
+    .validation-success-view a {
+        display: grid;
+        width: 100%;
+        min-height: 46px;
+        place-items: center;
+        margin-top: 16px;
+        border-radius: 6px;
+        background: var(--role-blue);
+        color: #fff;
+        font-size: 0.87rem;
+        font-weight: 800;
+        text-decoration: none;
+    }
+
+    .validation-success-view a + a {
+        margin-top: 8px;
+        border: 1px solid var(--role-blue);
+        background: transparent;
+        color: var(--role-blue);
+    }
+}
+
+@media (min-width: 768px) {
+    .role-portal .operator-entry-page {
+        width: min(100% - 48px, 1000px);
+        margin: 48px auto;
+    }
+
+    .role-portal .operator-entry-page .portal-intro,
+    .role-portal .operator-entry-page .operator-form-heading {
+        text-align: center;
+    }
+
+    .role-portal .price-input {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .role-portal .price-input input {
+        min-width: 110px;
+    }
+}
+
+/* ===================== ADMIN MOBILE STYLES ===================== */
+
+/* Admin body: padding-top untuk header sticky, tidak ada bottom nav */
+@media (max-width: 767px) {
+    body.admin-portal {
+        padding: 0 0 24px;
+        background: var(--role-bg);
+        color: var(--role-ink);
+        font-family: Arial, Helvetica, sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* Sembunyikan navbar desktop saat mobile */
+    body.admin-portal .container > .navbar,
+    body.admin-portal .wrapper > .navbar,
+    body.admin-portal > .container > .navbar {
+        display: none !important;
+    }
+
+    /* Konten utama admin di mobile */
+    body.admin-portal .main-content,
+    body.admin-portal .content-container,
+    body.admin-portal .filter-bar,
+    body.admin-portal .chart-row,
+    body.admin-portal .container-besar {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    body.admin-portal .container,
+    body.admin-portal .wrapper {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    body.admin-portal .header-text {
+        padding: 16px 16px 0;
+    }
+
+    /* ---- Tabel responsif scroll horizontal ---- */
+    .admin-table-wrap {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 8px;
+        border: 1px solid var(--role-line);
+        margin-bottom: 16px;
+    }
+
+    .admin-table-wrap table {
+        min-width: 600px;
+        border: none;
+    }
+
+    /* ---- Dashboard admin: filter bar ---- */
+    body.admin-portal .filter-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        padding: 16px !important;
+        background: #fff;
+        border-radius: 8px;
+        margin: 12px 16px;
+        border: 1px solid var(--role-line);
+        box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    body.admin-portal .filter-bar label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--role-muted);
+    }
+
+    body.admin-portal .filter-bar input[type="date"],
+    body.admin-portal .filter-bar select {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 12px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: var(--role-bg);
+        font-size: 0.95rem;
+    }
+
+    body.admin-portal .filter-bar button,
+    body.admin-portal .filter-bar input[type="submit"] {
+        width: 100%;
+        min-height: 44px;
+        border: none;
+        border-radius: 6px;
+        background: var(--role-blue);
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    /* ---- Chart ---- */
+    body.admin-portal .chart-row {
+        margin: 12px 16px !important;
+    }
+
+    body.admin-portal .container-stat,
+    body.admin-portal .container-statall {
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    body.admin-portal .chart-wrapper {
+        min-height: 220px;
+    }
+
+    /* ---- Cards (statistik) ---- */
+    body.admin-portal .content-container {
+        flex-direction: column !important;
+        margin: 12px 0 !important;
+        padding: 0 16px !important;
+    }
+
+    body.admin-portal .container-kiri,
+    body.admin-portal .container-kanan {
+        width: 100% !important;
+        margin: 0 0 12px 0 !important;
+    }
+
+    body.admin-portal .cards {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    body.admin-portal .card {
+        padding: 10px !important;
+        font-size: 0.82rem !important;
+    }
+
+    body.admin-portal .card h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    body.admin-portal .download-container {
+        padding: 0 16px 16px !important;
+    }
+
+    body.admin-portal .download-container button,
+    body.admin-portal #download-pdf {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    /* ---- Tabel SPHP di dashboard ---- */
+    body.admin-portal .container-besar {
+        margin: 12px 0 !important;
+        padding: 0 16px 16px !important;
+    }
+
+    body.admin-portal .container-besar table,
+    body.admin-portal .table.table-bordered {
+        min-width: 750px;
+    }
+
+    /* ---- Rekap Data: tombol export ---- */
+    .admin-export-btns {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .admin-export-btns a,
+    .admin-export-btns .btn {
+        width: 100%;
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    /* ---- Rekap data tables ---- */
+    body.admin-portal .rekap-container {
+        flex-direction: column !important;
+        gap: 16px !important;
+        padding: 0 !important;
+    }
+
+    body.admin-portal .rekap-container .table-container {
+        width: 100% !important;
+    }
+
+    body.admin-portal .rekap-container h2 {
+        font-size: 1rem;
+        padding: 0 16px;
+        margin-bottom: 8px;
+    }
+
+    /* ---- Verifikasi Data ---- */
+    body.admin-portal .verify-data-wrap {
+        padding: 16px;
+    }
+
+    body.admin-portal .verify-data-wrap table select {
+        min-height: 38px;
+        font-size: 0.85rem;
+        width: 100%;
+        min-width: 120px;
+    }
+
+    body.admin-portal #btnSave,
+    body.admin-portal .btn-add {
+        width: 100%;
+        min-height: 48px;
+    }
+
+    /* ---- User Management: mobile card list ---- */
+    .admin-user-card-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .admin-user-card {
+        background: #fff;
+        border: 1px solid var(--role-line);
+        border-radius: 10px;
+        padding: 14px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .admin-user-card__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+
+    .admin-user-card__avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--role-blue-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--role-blue);
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .admin-user-card__name {
+        font-weight: 800;
+        font-size: 0.97rem;
+        color: var(--role-ink);
+    }
+
+    .admin-user-card__role {
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 2px 9px;
+        border-radius: 99px;
+        background: var(--role-blue-soft);
+        color: var(--role-blue);
+        display: inline-block;
+        margin-top: 2px;
+    }
+
+    .admin-user-card__role--admin { background: #fde8e8; color: var(--role-danger); }
+    .admin-user-card__role--operator { background: #e8f5e9; color: var(--role-green); }
+    .admin-user-card__role--verifikator { background: #e0f3ff; color: var(--role-blue); }
+
+    .admin-user-card__info {
+        font-size: 0.82rem;
+        color: var(--role-muted);
+        margin-bottom: 10px;
+    }
+
+    .admin-user-card__info span {
+        display: block;
+        margin-bottom: 3px;
+    }
+
+    .admin-user-card__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .admin-user-card__actions a,
+    .admin-user-card__actions button {
+        flex: 1;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border-radius: 6px;
+        font-size: 0.83rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .admin-user-card__btn-edit {
+        background: #fff3cd;
+        color: #856404;
+        border: 1px solid #ffc107;
+    }
+
+    .admin-user-card__btn-delete {
+        background: #fde8e8;
+        color: var(--role-danger);
+        border: 1px solid #f5c6c7;
+    }
+
+    /* ---- Regulasi / Sumber Data mobile ---- */
+    .admin-regulasi-card-list {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+    }
+
+    .admin-regulasi-card {
+        background: #fff;
+        border: 1px solid var(--role-line);
+        border-radius: 10px;
+        padding: 14px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .admin-regulasi-card__name {
+        font-size: 1rem;
+        font-weight: 800;
+        color: var(--role-ink);
+        margin-bottom: 6px;
+    }
+
+    .admin-regulasi-card__info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .admin-regulasi-card__info-item {
+        background: var(--role-bg);
+        border-radius: 6px;
+        padding: 6px 8px;
+    }
+
+    .admin-regulasi-card__info-item span {
+        display: block;
+        font-size: 0.7rem;
+        color: var(--role-muted);
+        font-weight: 600;
+    }
+
+    .admin-regulasi-card__info-item strong {
+        font-size: 0.88rem;
+        color: var(--role-ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .admin-regulasi-card__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .admin-regulasi-card__actions a,
+    .admin-regulasi-card__actions button {
+        flex: 1;
+        min-height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border-radius: 6px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    /* ---- Form halaman edit/tambah ---- */
+    body.admin-portal .form-page-wrap {
+        padding: 16px;
+    }
+
+    body.admin-portal .form-group,
+    body.admin-portal .input-group {
+        margin-bottom: 14px;
+    }
+
+    body.admin-portal .form-group label,
+    body.admin-portal .input-group label {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--role-muted);
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    body.admin-portal .form-group input,
+    body.admin-portal .form-group select,
+    body.admin-portal .input-group input,
+    body.admin-portal .input-group select {
+        width: 100%;
+        min-height: 46px;
+        padding: 0 12px;
+        border: 1px solid var(--role-line);
+        border-radius: 6px;
+        background: #fff;
+        font-size: 1rem;
+        color: var(--role-ink);
+    }
+
+    body.admin-portal .button-container {
+        margin-top: 20px;
+    }
+
+    body.admin-portal .button-container button,
+    body.admin-portal .button-container .btn {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    body.admin-portal .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 16px;
+        margin: 12px 16px 0;
+        background: var(--role-surface-blue);
+        color: var(--role-blue);
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    /* ---- Tampilkan/sembunyikan versi mobile vs desktop ---- */
+    .admin-mobile-only { display: block; }
+    .admin-desktop-only { display: none !important; }
+}
+
+@media (min-width: 768px) {
+    .admin-mobile-only { display: none !important; }
+    .admin-desktop-only { display: block; }
+}

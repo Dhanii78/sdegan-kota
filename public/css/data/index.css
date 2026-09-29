@@ -1,0 +1,548 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FCF6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    margin-left: 200px;
+}
+
+.container.shifted {
+    margin-left: 10px; /* Menggeser ke kiri */
+}
+
+.navbar {
+    background: linear-gradient(180deg, #D5F8E4 0%, #A5D9C7 100%); /* Gradien warna */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 170px;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1); /* Efek bayangan di sisi kanan */
+}
+
+.navbar.hidden {
+    transform: translateX(-100%);
+}
+
+.navbar::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 10%, transparent 80%);
+    border-radius: 50%;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #7cc5a1; /* Garis pemisah */
+}
+
+.logo img {
+    max-width: 100px; /* Sesuaikan ukuran logo */
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-text {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333; /* Warna teks */
+    margin-top: 10px; /* Jarak antara logo dan teks */
+}
+.navbar img {
+    max-height: 80px; /* Mengurangi ukuran logo */
+    max-width: 100%; /* Ensure the logo is responsive */
+    object-fit: contain;
+}
+
+.navbar a {
+    color: #5b5b5b;
+    padding: 10px 18px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    border-radius: 5px;
+    margin: 10px 0;
+    background-color: #A5D9C7;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Efek dekoratif ikon */
+.navbar a::before {
+    content: "★"; /* Bisa ganti dengan ikon lain */
+    font-size: 10px;
+    color: #ffffff;
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) rotate(20deg);
+}
+
+/* Hiasan bawah sidebar */
+.navbar::after {
+    content: "DKPP Kota Kediri \A Bidang Ketahanan Pangan";
+    white-space: pre-line;
+    position: absolute;
+    bottom: 20px;
+    font-size: 12px;
+    color: #5b5b5b;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+.navbar a:hover {
+    background-color: #89c4af;
+    color: #ffffff;
+    transform: translateX(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a:active {
+    background-color: #7cc5a1; /* Darker shade when clicked */
+    transform: translateX(5px); /* Slight slide effect on click */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan lebih intens saat tombol ditekan */
+}
+
+.navbar a + a {
+    border-top: 1px solid #ccc; /* Optional separator between buttons */
+}
+
+.datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #222;
+
+    background: #ffffff;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+    width: 150px;  /* lebih compact */
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.datetime::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(165, 217, 199, 0.3); /* dekorasi lingkaran */
+    border-radius: 50%;
+}
+
+.datetime:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Hari dan tanggal */
+.datetime span {
+    font-size: 11px;  /* lebih compact */
+    color: #555;
+    font-weight: 500;
+}
+
+/* Garis tipis dekorasi */
+.datetime hr {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 4px 0;
+    width: 100%;
+}
+
+/* Tombol untuk Hide/Show Sidebar (Panah) */
+.toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: -20px; /* Tempatkan di atas kanan sidebar */
+    background-color: #5BE4A8;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Tombol Panah ke Kiri ketika Sidebar tersembunyi */
+.toggle-btn.hide {
+    transform: rotate(180deg); /* Putar panah 180 derajat */
+}
+
+/* Adjust content when sidebar is hidden */
+.sidebar-hidden .container {
+    margin-left: 10px;
+}
+
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+    padding: 10px 15px;
+    background-color: #A5D9C7;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.05);
+    max-width: 400px;
+}
+
+.filter-container label {
+    font-weight: bold;
+}
+
+.filter-container select {
+    flex: 1;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.main-content {
+    padding: 20px;
+    padding-top: 5px; /* Adjust this value based on the height of the navbar */
+    flex-grow: 1;
+}
+.page-header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2px;
+    font-size: 12px; /* Ukuran font default */
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 14px; /* Bisa diubah sesuai kebutuhan */
+}
+
+table th {
+    background-color: #A5D9C7;
+    text-align: center;
+    color: #010101;
+    font-size: 14px; /* Ukuran font header bisa lebih besar */
+}
+
+.header-text {
+    margin-bottom: 8px;
+    text-align: center;
+    font-weight: 700; /* tebal */
+    font-size: 16px;  /* ukuran pas untuk header */
+    font-family: 'Poppins', Arial, sans-serif; /* modern dan clean */
+    color: #111312; /* abu gelap elegan */
+    letter-spacing: 0.5px; /* agak renggang biar rapi */
+    text-transform: uppercase; /* bikin judul lebih tegas */
+}
+
+.header-text::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #89c4af; /* warna hijau khas websitemu */
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-left: 20px; /* Adjust the padding as needed */
+}
+
+.btn-add, .btn-edit, .btn-delete {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.btn-add {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-add:hover, .btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+    position: relative;
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Tambahkan animasi untuk fade in dan slide in */
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(0); }
+}
+
+/* Animasi fade-out dan slide-out */
+@keyframes modalFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes modalSlideOut {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100px); }
+}
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: rgba(0,0,0,0.6);
+    backdrop-filter: blur(2px); /* efek blur belakang */
+    padding-top: 60px;
+    transition: opacity 0.3s ease;
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 30px 25px;
+    border-radius: 12px;
+    max-width: 450px;
+    width: 90%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    transform: translateY(-50px);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+/* Show modal animation */
+.modal.show .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
+}
+
+.close:hover {
+    color: #000;
+    transform: scale(1.2);
+}
+
+/* Modal heading */
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+/* Profile details layout */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+@media(min-width: 480px) {
+    .profile-details {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info p {
+    font-size: 16px;
+    color: #444;
+    margin: 5px 0;
+}
+
+.profile-info p strong {
+    color: #222;
+}
+
+.profile-logo img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #5BE4A8;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-logo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Logout button */
+.btn-logout {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #d9534f;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+/* Animasi fade modal overlay */
+.modal.show {
+    display: block;
+    animation: fadeInOverlay 0.3s ease forwards;
+}
+
+@keyframes fadeInOverlay {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.modal.hide {
+    animation: fadeOutOverlay 0.3s ease forwards;
+}
+
+@keyframes fadeOutOverlay {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

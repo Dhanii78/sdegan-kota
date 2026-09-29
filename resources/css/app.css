@@ -1,0 +1,34 @@
+/* ========================================== */
+/* PENGATURAN RESPONSIF UNTUK HP / MOBILE      */
+/* ========================================== */
+@media screen and (max-width: 768px) {
+    /* 1. Ubah elemen flex/grid agar menumpuk ke bawah di HP */
+    body, .container, .main-content, .row {
+        flex-direction: column !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 10px !important;
+    }
+
+    /* 2. Buat semua tabel bisa digeser ke samping (tidak merusak layout) */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    /* 3. Perbesar tombol agar mudah disentuh jari */
+    button, .btn, input[type="submit"] {
+        width: 100% !important;
+        margin-bottom: 8px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    /* 4. Sesuaikan ukuran input form agar pas di layar HP */
+    input, select, textarea {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+}

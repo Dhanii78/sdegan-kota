@@ -1,0 +1,347 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0FCF6;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 900px;
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.left-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* Mengatur elemen dalam satu kolom */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Biar teks di tengah */
+}
+
+.left-side img {
+    width: 50%;
+    max-width: 300px;
+    margin-bottom: 10px; /* Jarak antara gambar dan teks */
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Warna teks, sesuaikan dengan desain */
+}
+
+.right-side {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.login-container {
+    background-color: #D5F8E4;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left;
+}
+
+/* Input fields */
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus {
+    border-color: #5BE4A8;
+    outline: none;
+}
+
+/* Password wrapper with toggle */
+.password-wrapper-login {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.toggle-password:hover {
+    transform: translateY(-50%) scale(1.2);
+}
+
+.toggle-password svg {
+    display: block;
+    transition: stroke 0.3s;
+}
+
+.toggle-password.active svg {
+    stroke: #5BE4A8;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    animation: fadeIn 0.5s ease;
+}
+
+.alert-error {
+    background-color: #ffe0e0;
+    border: 1px solid #ff9b9b;
+    color: #b30000;
+}
+
+.alert-success {
+    background-color: #e0ffe3;
+    border: 1px solid #7ad97a;
+    color: #006b1b;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Membuat tombol login berada di tengah */
+.login-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.input-group input[type="submit"] {
+    background-color: #A5D9C7;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.input-group input[type="submit"]:hover {
+    background-color: #5BE4A8;
+    transform: scale(1.05);
+}
+
+.input-group-forgot {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group-forgot label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    text-align: left;
+    display: block;
+}
+
+/* Input teks dan password */
+.input-group-forgot input[type="text"],
+.input-group-forgot input[type="password"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.input-group-forgot input[type="text"]:focus,
+.input-group-forgot input[type="password"]:focus {
+    border-color: #5BE4A8;
+    outline: none;
+}
+
+/* Wrapper password dengan toggle */
+.password-wrapper {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.toggle-password:hover {
+    color: #5BE4A8;
+}
+
+.input-group-forgot input[type="submit"] {
+    background-color: #A5D9C7;
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 16px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: auto;
+    display: block;
+    margin: 0 auto;         
+}
+
+.input-group-forgot input[type="submit"]:hover {
+    background-color: #5BE4A8;
+    transform: scale(1.03);
+}
+
+/* Link forgot password */
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.dashboard-btn {
+    background-color: #4CAF50; /* Warna hijau */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    width: auto;
+}
+
+.dashboard-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 15px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .container {
+        flex-direction: column;
+        padding: 20px 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .left-side {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .left-side img {
+        max-width: 150px;
+    }
+
+    .logo-text {
+        font-size: 15px;
+    }
+
+    .right-side {
+        width: 100%;
+    }
+
+    .login-container {
+        max-width: 100%;
+        width: 100%;
+        padding: 25px 18px;
+        box-sizing: border-box;
+    }
+
+    .input-group input[type="text"],
+    .input-group input[type="password"] {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .submit-btn, .dashboard-btn {
+        width: 100% !important;
+        min-height: 44px;
+        font-size: 16px;
+    }
+}
+

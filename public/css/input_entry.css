@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FCF6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-back {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #dc3545; /* Warna merah */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #c82333; /* Merah lebih gelap saat hover */
+}
+
+.form-image {
+    width: 400px; /* Gambar lebih besar */
+    height: auto;
+    border-radius: 8px;
+    margin-left: 20px; /* Geser gambar lebih ke kiri */
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-start; /* Gambar lebih ke kiri */
+    align-items: center;
+    padding: 20px;
+    gap: 50px; /* Jarak antara gambar dan form */
+    margin-top: 50px;
+}
+
+.center-text {
+    background-color: #ffffff;
+    text-align: center;
+    color: #111312;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    font-family: 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.center-text::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #89c4af; /* aksen hijau */
+    margin: 6px auto 0;
+    border-radius: 2px;
+}
+
+.scrollable-table {
+    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+.table {
+    min-width: 500px;
+}
+
+form {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #F0FCF6;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.mb-3 {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #acacac;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn-import {
+    display: inline-block;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px; /* Jarak dari tombol Submit */
+}
+
+.btn-import:hover {
+    background-color: #c82333;
+}
+
+.atau {
+    margin: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media (max-width: 767px) {
+    body {
+        padding: 10px;
+    }
+    .btn-back {
+        position: static;
+        margin-bottom: 15px;
+        display: inline-block;
+        width: fit-content;
+    }
+    .center-text {
+        position: static;
+        transform: none;
+        margin: 15px auto;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .main-content {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 10px;
+        padding: 10px 0;
+    }
+    .form-image {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        display: block;
+    }
+    form {
+        max-width: 100%;
+        padding: 12px;
+    }
+    .scrollable-table {
+        max-height: 400px;
+    }
+    .table th, .table td {
+        font-size: 13px;
+        padding: 6px;
+    }
+    .form-control {
+        padding: 6px;
+        font-size: 14px;
+    }
+}

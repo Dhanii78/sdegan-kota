@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FCF6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    margin-left: 200px;
+}
+
+.btn-back {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #dc3545; /* Warna merah */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #c82333; /* Merah lebih gelap saat hover */
+}
+
+.header-text {
+    background-color: #F0FCF6;
+    text-align: center;
+    color: #111312;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    font-family: 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.header-text::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #89c4af; /* aksen hijau */
+    margin: 6px auto 0;
+    border-radius: 2px;
+}
+
+.main-content {
+    display: flex;
+    justify-content: flex-start; /* Gambar lebih ke kiri */
+    align-items: center;
+    padding: 20px;
+    gap: 70px; /* Jarak antara gambar dan form */
+}
+
+.form-image {
+    width: 350px; /* Gambar lebih besar */
+    height: auto;
+    border-radius: 8px;
+    margin-left: -100px; /* Geser gambar lebih ke kiri */
+}
+
+.form-container {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 650px;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.add-commodity-form {
+    width: 98%;
+}
+
+.input-group {
+    margin-bottom: 5px;
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;    
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Tombol lebih kecil */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    display: block;
+    margin: 20px auto; /* Agar tombol di tengah */
+    margin-bottom: 10px;
+    width: auto;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

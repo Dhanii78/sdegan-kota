@@ -1,0 +1,224 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F0FCF6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== CONTAINER UTAMA ===== */
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* ===== TOMBOL KEMBALI ===== */
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.btn-back:hover {
+    background-color: #c82333;
+}
+
+/* ===== JUDUL TENGAH ===== */
+.center-text {
+    background-color: #F0FCF6;
+    text-align: center;
+    color: #111312;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 10px 0;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+    font-family: 'Poppins', Arial, sans-serif;
+    letter-spacing: 0.6px;
+}
+
+.center-text::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #89c4af; /* aksen hijau */
+    margin: 6px auto 0;
+    border-radius: 2px;
+}
+
+/* ===== FILTER ===== */
+.filter-container {
+    margin-bottom: 1rem;
+    background-color: #A5D9C7;
+    padding: 10px 15px;
+    border-radius: 8px;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 100%; /* biar penuh layar */
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+}
+
+/* Tabel */
+.table-container {
+    flex: 1;  
+    min-width: 0; /* biar fleksibel */
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+/* Jangan paksa 850px fix */
+.table-wrapper {
+    min-width: 100%; 
+}
+
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+table thead {
+    background-color: #A5D9C7;
+    color: #343434;
+}
+table thead th {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #343434;
+}
+table tbody td {
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dee2e6;
+}
+table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+table select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    font-size: 13px;
+}
+
+/* ===== BUTTON ===== */
+.button-container {
+    margin-top: 20px;
+    text-align: right;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn i {
+    margin-right: 6px;
+}
+.btn.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+.btn.btn-secondary:hover {
+    background-color: #5a6268;
+}
+.btn.btn-add {
+    background-color: #198754;
+    color: white;
+}
+.btn.btn-add:hover {
+    background-color: #157347;
+}
+
+/* ===== ALERT ===== */
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    display: none;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .table-wrapper {
+        min-width: 100%;
+    }
+    table.table {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: row; /* tumpuk ke bawah */
+        align-items: center;
+    }
+
+    .form-image {
+        max-width: 200px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-container {
+        flex-direction: column;
+        max-width: 100%;
+    }
+    .btn-back {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}
